@@ -1,9 +1,3 @@
-const express = require("express");
-
-const port = 3000;
-
-const app = express()
-
 let users = [
     {
         id: 1,
@@ -23,16 +17,9 @@ let users = [
     },
 ]
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); //body-parser에서 body data use config.
-app.get("/", (req, res) => {
-    res.send("Hello world!")
-})
-
-app.get("/users", (req, res) => res.json(users))
-
-app.get("/users/:id", (req, res) => {
-  const id = parseInt(req.params.id, 10)
+export const index = (req,res) => res.json(users);
+export const show = (req,res) =>{
+  const id = parseInt(req.params.id, 10);
   if (!id) {
     return res.status(400).json({ error: "Incorrect id" })
   }
@@ -40,11 +27,11 @@ app.get("/users/:id", (req, res) => {
   if (!user) {
     return res.status(404).json({ error: "Unknown user" })
   }
-  return res.json(user)
-})
+  return res.json(user);
+};
 
-app.delete("/users/:id", (req, res) => {
-  const id = parseInt(req.params.id, 10)
+export const userRemove = (req,res)=>{
+  const id = parseInt(req.params.id, 10);
   if (!id) {
     return res.status(400).json({ error: "Incorrect id" })
   }
@@ -54,14 +41,20 @@ app.delete("/users/:id", (req, res) => {
   }
   users.splice(userIdx, 1)
   return res.status(204).send()
-})
+};
 
-app.post("/users", (req, res) => {
+export const userAdd = (req,res) =>{
     const name = req.body.name || "";
     if (!name.length) {
         return res.status(400).json({ error: "Plz Update user name" });
     } 
-})
-const handleAppListen = () => console.log(`✅ http://localhost:${port}/`)
-
-app.listen(port, handleAppListen);
+    const id = users.reduce((maxIdx, user) =>{
+      return user.id > maxIdx ? user.id:maxIdx;
+    },0) + 1;
+    const newUser = {
+      id: id,
+      name: name,
+    };
+    users.push(newUser);
+    return res.status(201).json(newUser);
+};
