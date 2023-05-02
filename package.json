@@ -4,7 +4,8 @@
   "description": "",
   "main": "./app.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/app.js"
+    "dev:server": "nodemon --exec babel-node src/app.js",
+    "test": "mocha --require @babel/register src/api/users/user.spec.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,11 @@
     "@babel/core": "^7.21.5",
     "@babel/node": "^7.20.7",
     "@babel/preset-env": "^7.21.5",
-    "nodemon": "^2.0.22"
+    "@babel/register": "^7.21.0",
+    "babel-jest": "^29.5.0",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.22",
+    "should": "^13.2.3",
+    "supertest": "^6.3.3"
   }
 }

@@ -16,3 +16,5 @@ app.use("/users",router);
 const handleAppListen = () => console.log(`✅ http://localhost:${port}/`);
 
 app.listen(port, handleAppListen);
+
+export default app
