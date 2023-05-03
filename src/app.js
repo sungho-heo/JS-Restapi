@@ -2,6 +2,7 @@ import express from "express";
 import morgan from "morgan";
 import router from "./api/users/index.js";
 
+
 const port = 3000;
 
 const app = express()
@@ -13,7 +14,11 @@ app.get("/", (req, res) => {
     res.send("Hello world!")
 })
 app.use("/users",router);
-const handleAppListen = () => console.log(`✅ http://localhost:${port}/`);
+const handleAppListen = () => {
+    console.log(`✅ http://localhost:${port}/`);
+};
+
+require("../models/index");
 
 app.listen(port, handleAppListen);
 

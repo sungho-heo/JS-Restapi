@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "153123gj@#",
+    "database": "node_api_rest",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
