@@ -4,8 +4,8 @@
   "description": "",
   "main": "./app.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/app.js",
-    "test": "mocha --require @babel/register src/api/users/user.spec.js"
+    "dev:server": "nodemon --exec babel-node bin/www.js",
+    "test": "NODE_ENV=test mocha --require @babel/register src/api/users/user.spec.js"
   },
   "repository": {
     "type": "git",

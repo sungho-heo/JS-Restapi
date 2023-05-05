@@ -1,10 +1,13 @@
 import { Sequelize, DataTypes } from "sequelize";
+import config from "../config/environment.js";
 
-export const sequelize = new Sequelize("node_api_rest", "root", "153123gj@#", {
-    dialect: "mysql",
-    host: "localhost",
-    port: 3306,
-});
+export const sequelize = new Sequelize(
+    config.mysql.database,
+    config.mysql.username,
+    config.mysql.password,
+    { dialect: "mysql" }
+);
+
 
 
 export const User = sequelize.define("User", {
@@ -12,4 +15,6 @@ export const User = sequelize.define("User", {
         type: DataTypes.STRING,
     },
 });
+
+
 

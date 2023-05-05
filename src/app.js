@@ -1,10 +1,8 @@
 import express from "express";
 import morgan from "morgan";
 import router from "./api/users/index.js";
-import {sequelize, User} from "./models.js";
 
 
-const port = 3000;
 
 const app = express()
 
@@ -16,14 +14,5 @@ app.get("/", (req, res) => {
 })
 
 app.use("/users",router);
-const handleAppListen = async () => {
-    console.log(`✅ http://localhost:${port}/`);
-    await sequelize.sync({ force: true }).then(() => {
-        console.log("Databases sync");
-    })
-};
-
-
-app.listen(port, handleAppListen);
 
 export default app
